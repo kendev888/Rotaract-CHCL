@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Rotaract Club Limonade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* === VARIABLES MODERNES ROTARACT === */
+        :root {
+            --rotaract-blue: #1E3D6F;
+            --rotaract-gold: #F2A900;
+            --rotaract-light-blue: #4A90E2;
+            --rotaract-dark-blue: #0D2B4E;
+            
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --medium-gray: #E9ECEF;
+            --dark-gray: #6C757D;
+            --text-dark: #2D3748;
+            --success-green: #38A169;
+            --error-red: #E53E3E;
+            
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --radius: 8px;
+            --radius-lg: 12px;
+            
+            --gradient-primary: linear-gradient(135deg, var(--rotaract-blue) 0%, var(--rotaract-dark-blue) 100%);
+            --gradient-gold: linear-gradient(45deg, var(--rotaract-gold), #FFB800);
+        }
+
+        /* === RESET MODERNE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-gray);
+        }
+
+        /* === HEADER === */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .logo-container h1 {
+            font-size: 1.3rem;
+            color: var(--rotaract-blue);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--rotaract-blue);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--white);
+            background: var(--rotaract-gold);
+            transform: translateY(-2px);
+        }
+
+        /* === HERO SECTION === */
+        .hero-section {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(242, 169, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* === CONTACT SECTION === */
+        .contact-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        /* === FORMULAIRE === */
+        .contact-form-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-form-container h3 {
+            color: var(--rotaract-blue);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--rotaract-blue);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--medium-gray);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--rotaract-gold);
+            box-shadow: 0 0 0 3px rgba(242, 169, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: var(--gradient-gold);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(242, 169, 0, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: var(--dark-gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* === INFORMATIONS CONTACT === */
+        .contact-info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-info, .social-media, .meeting-info, .office-hours {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .contact-info:hover, .social-media:hover, .meeting-info:hover, .office-hours:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .contact-info h3, .social-media h3, .meeting-info h3, .office-hours h3 {
+            color: var(--rotaract-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: var(--light-gray);
+        }
+
+        .contact-item i {
+            font-size: 1.3rem;
+            color: var(--rotaract-gold);
+            margin-top: 0.2rem;
+            min-width: 20px;
+        }
+
+        .contact-item p {
+            margin: 0;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .contact-item a {
+            color: var(--rotaract-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--rotaract-gold);
+        }
+
+        /* === RÉSEAUX SOCIAUX === */
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--rotaract-gold);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .social-links i {
+            font-size: 1.5rem;
+        }
+
+        /* === CARTE === */
+        .map-section {
+            margin: 3rem auto;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        .map-container {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .map-placeholder {
+            height: 400px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-align: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .map-placeholder i {
+            font-size: 4rem;
+            opacity: 0.8;
+        }
+
+        .map-placeholder h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .map-placeholder p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* === FAQ SECTION === */
+        .faq-section {
+            background: var(--white);
+            padding: 3rem 2rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-section h3 {
+            color: var(--rotaract-blue);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .faq-item {
+            padding: 1.5rem;
+            border: 2px solid var(--medium-gray);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--rotaract-gold);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            color: var(--rotaract-blue);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-question i {
+            color: var(--rotaract-gold);
+        }
+
+        .faq-answer {
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--rotaract-dark-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* === VALIDATION === */
+        .form-group input.valid,
+        .form-group textarea.valid {
+            border-color: var(--success-green);
+        }
+
+        .form-group input.invalid,
+        .form-group textarea.invalid {
+            border-color: var(--error-red);
+        }
+
+        .error-message {
+            color: var(--error-red);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background: var(--success-green);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero-section {
+                padding: 3rem 1rem 2rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .contact-section {
+                padding: 0 1rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-form-container {
+                padding: 2rem;
+            }
+
+            .social-links {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .contact-form-container {
+                padding: 1.5rem;
+            }
+
+            .contact-info, .social-media, .meeting-info, .office-hours {
+                padding: 1.5rem;
+            }
+        }
+
+        /* === ANIMATIONS === */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+                        <img src="images/téléchargement.png" alt="Logo Rotaract" class="logo">
+
+            <h1>Campus Henry Christophe<br>Limonade</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="events.html">Événements</a></li>
+                <li><a href="gallery.html">Galerie</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="fade-in">Contactez-nous</h1>
+            <p class="subtitle fade-in">Nous sommes là pour répondre à vos questions et vous accompagner</p>
+        </div>
+    </section>
+
+    <main>
+        <section class="contact-section">
+            <div class="contact-container">
+                <!-- Formulaire de contact -->
+                <div class="contact-form-container slide-in-left">
+                    <h3>Envoyez-nous un message</h3>
+                    
+                    <div class="success-message" id="successMessage">
+                        ✅ Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+                    </div>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" placeholder="Votre nom complet" required>
+                            <span class="error-message" id="name-error">Veuillez entrer votre nom complet</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="votre.email@example.com" required>
+                            <span class="error-message" id="email-error">Veuillez entrer une adresse email valide</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Sujet *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Choisissez un sujet</option>
+                                <option value="adhesion">Demande d'adhésion</option>
+                                <option value="partenariat">Proposition de partenariat</option>
+                                <option value="benevolat">Opportunités de bénévolat</option>
+                                <option value="evenement">Questions sur un événement</option>
+                                <option value="media">Demande média/presse</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                            <span class="error-message" id="subject-error">Veuillez sélectionner un sujet</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+                            <span class="error-message" id="message-error">Veuillez entrer votre message (minimum 10 caractères)</span>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i>
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Informations de contact -->
+                <div class="contact-info-container slide-in-right">
+                    <!-- Coordonnées -->
+                    <div class="contact-info">
+                        <h3>Nos coordonnées</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p><strong>Adresse</strong></p>
+                                <p>Campus Henry Christophe<br>Limonade, Nord, Haïti</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p><strong>Email</strong></p>
+                                <p><a href="mailto:uehclrotaractclub@gmail.com">uehclrotaractclub@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p><strong>Téléphone</strong></p>
+                                <p><a href="tel:+50936000000">+509 47 44 3425 / +509 33 82 9312  / +509 33 82 9312</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <p><strong>WhatsApp</strong></p>
+                                <p><a href="https://wa.me/50936000000">+509 47 44 3425 / +509 33 82 9312</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Horaires -->
+                    <div class="office-hours">
+                        <h3>Heures de permanence</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <p><strong>Lundi - Vendredi</strong></p>
+                                <p>9h00 - 17h00</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-calendar-week"></i>
+                            <div>
+                                <p><strong>Weekend</strong></p>
+                                <p>Sur rendez-vous uniquement</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Réunions -->
+                    <div class="meeting-info">
+                        <h3>Réunions hebdomadaires</h3>
+                        <div class="contact-item">
+                            <i class="far fa-calendar-alt"></i>
+                            <div>
+                                <p><strong>Quand</strong></p>
+                                <p>Tous les mercredis à 17h00</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-pin"></i>
+                            <div>
+                                <p><strong>Où</strong></p>
+                                <p>Salle B12, Bâtiment Principal</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Réseaux sociaux -->
+                    <div class="social-media">
+                        <h3>Suivez-nous</h3>
+                        <div class="social-links">
+                            <a href="#" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                                Facebook
+                            </a>
+                            <a href="#" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                                Instagram
+                            </a>
+                            <a href="#" target="_blank">
+                                <i class="fab fa-linkedin-in"></i>
+                                LinkedIn
+                            </a>
+                            <a href="#" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                                Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section fade-in">
+            <h3>Questions fréquentes</h3>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        Comment rejoindre le Rotaract Club ?
+                    </div>
+                    <div class="faq-answer">
+                        Vous devez avoir entre 18 et 30 ans et être étudiant au Campus Henry Christophe. Remplissez notre formulaire d'inscription en ligne ou assistez à l'une de nos réunions hebdomadaires.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        Y a-t-il des frais d'adhésion ?
+                    </div>
+                    <div class="faq-answer">
+                        Oui, il y a des frais d'adhésion annuels modiques qui couvrent les activités du club et les projets communautaires. Contactez-nous pour plus de détails.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        Puis-je proposer un projet ?
+                    </div>
+                    <div class="faq-answer">
+                        Absolument ! Nous encourageons tous nos membres à proposer des projets qui correspondent à notre mission de service communautaire et de développement du leadership.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle"></i>
+                        Comment devenir partenaire ?
+                    </div>
+                    <div class="faq-answer">
+                        Nous sommes toujours ouverts aux partenariats avec des organisations partageant nos valeurs. Contactez-nous avec votre proposition de collaboration.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Carte -->
+        <section class="map-section fade-in">
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <div>
+                        <h4>Campus Henry Christophe</h4>
+                        <p>Limonade, Nord, Haïti</p>
+                        <p>Salle B12, Bâtiment Principal</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Rotaract Club - Campus Henry Christophe de Limonade. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Année dynamique
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Validation du formulaire
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+
+        // Validation en temps réel
+        const inputs = form.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('blur', validateField);
+            input.addEventListener('input', clearError);
+        });
+
+        function validateField(e) {
+            const field = e.target;
+            const fieldName = field.name;
+            let isValid = true;
+            let errorMessage = '';
+
+            field.classList.remove('valid', 'invalid');
+
+            switch(fieldName) {
+                case 'name':
+                    if (field.value.trim().length < 2) {
+                        isValid = false;
+                        errorMessage = 'Le nom doit contenir au moins 2 caractères';
+                    }
+                    break;
+
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(field.value)) {
+                        isValid = false;
+                        errorMessage = 'Veuillez entrer une adresse email valide';
+                    }
+                    break;
+
+                case 'subject':
+                    if (!field.value) {
+                        isValid = false;
+                        errorMessage = 'Veuillez sélectionner un sujet';
+                    }
+                    break;
+
+                case 'message':
+                    if (field.value.trim().length < 10) {
+                        isValid = false;
+                        errorMessage = `Message trop court (${field.value.trim().length}/10 caractères minimum)`;
+                    }
+                    break;
+            }
+
+            const errorElement = document.getElementById(fieldName + '-error');
+            if (errorElement) {
+                if (isValid) {
+                    field.classList.add('valid');
+                    errorElement.classList.remove('show');
+                } else {
+                    field.classList.add('invalid');
+                    errorElement.textContent = errorMessage;
+                    errorElement.classList.add('show');
+                }
+            }
+
+            return isValid;
+        }
+
+        function clearError(e) {
+            const field = e.target;
+            field.classList.remove('invalid');
+            const errorElement = document.getElementById(field.name + '-error');
+            if (errorElement) {
+                errorElement.classList.remove('show');
+            }
+        }
+
+        // Validation complète du formulaire
+        function validateForm() {
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!validateField({ target: input })) {
+                    isValid = false;
+                }
+            });
+            
+            return isValid;
+        }
+
+        // Soumission du formulaire
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateForm()) {
+                // Désactiver le bouton pendant l'envoi
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+                
+                // Simulation d'envoi (remplacer par votre logique d'envoi réelle)
+                setTimeout(() => {
+                    // Afficher le message de succès
+                    successMessage.classList.add('show');
+                    
+                    // Réinitialiser le formulaire
+                    form.reset();
+                    
+                    // Réactiver le bouton
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le message';
+                    
+                    // Cacher le message de succès après 5 secondes
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                    
+                    // Scroll vers le haut pour voir le message de succès
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                }, 2000);
+            } else {
+                // Scroll vers la première erreur
+                const firstError = form.querySelector('.invalid');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+
+        // Animation supplémentaire pour les éléments au hover
+        document.querySelectorAll('.contact-item, .faq-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Effet de focus amélioré pour les inputs
+        document.querySelectorAll('input, textarea, select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - Rotaract Club Limonade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* === VARIABLES MODERNES ROTARACT === */
+        :root {
+            --rotaract-blue: #1E3D6F;
+            --rotaract-gold: #F2A900;
+            --rotaract-light-blue: #4A90E2;
+            --rotaract-dark-blue: #0D2B4E;
+            
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --medium-gray: #E9ECEF;
+            --dark-gray: #6C757D;
+            --text-dark: #2D3748;
+            
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --radius: 8px;
+            --radius-lg: 12px;
+            
+            --gradient-primary: linear-gradient(135deg, var(--rotaract-blue) 0%, var(--rotaract-dark-blue) 100%);
+            --gradient-gold: linear-gradient(45deg, var(--rotaract-gold), #FFB800);
+        }
+
+        /* === RESET MODERNE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-gray);
+        }
+
+        /* === HEADER === */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .logo-container h1 {
+            font-size: 1.3rem;
+            color: var(--rotaract-blue);
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--rotaract-blue);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--white);
+            background: var(--rotaract-gold);
+            transform: translateY(-2px);
+        }
+
+        /* === HERO SECTION === */
+        .hero-section {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(242, 169, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        /* === SECTIONS === */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--rotaract-blue);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-gold);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* === ABOUT SECTION === */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            color: var(--rotaract-blue);
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about-text h3:first-child {
+            margin-top: 0;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: var(--dark-gray);
+        }
+
+        .values-list {
+            list-style: none;
+        }
+
+        .values-list li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .values-list li:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .values-list i {
+            font-size: 1.5rem;
+            color: var(--rotaract-gold);
+            width: 30px;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Placeholder pour image manquante */
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* === STATISTICS SECTION === */
+        .stats-section {
+            background: var(--white);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--rotaract-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--rotaract-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* === TEAM SECTION === */
+        .team-section {
+            background: var(--white);
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .team-section h3 {
+            font-size: 2rem;
+            color: var(--rotaract-blue);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--rotaract-gold);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid var(--rotaract-gold);
+        }
+
+        .member-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--rotaract-gold);
+        }
+
+        .team-member h4 {
+            color: var(--rotaract-blue);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            color: var(--rotaract-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* === MISSION SECTION === */
+        .mission-section {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mission-section h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .mission-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--rotaract-dark-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero-section {
+                padding: 4rem 1rem 3rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* === ANIMATIONS === */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* === MENU TOGGLE === */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--rotaract-blue);
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle {
+                display: block;
+            }
+            nav ul {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                background: var(--white);
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                box-shadow: var(--shadow-md);
+                border-radius: var(--radius);
+                padding: 1rem 2rem;
+                z-index: 200;
+            }
+            nav ul.show {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <div class="logo-container">
+        <img src="images/téléchargement.png" alt="Logo Rotaract" class="logo">
+        <h1>Campus Henry Christophe Limonade</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="about.html" class="active">À propos</a></li>
+            <li><a href="events.html">Événements</a></li>
+            <li><a href="gallery.html">Galerie</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" title="Ouvrir le menu">
+        <i class="fas fa-bars"></i>
+    </button>
+</header>
+ 
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="fade-in">À propos du Rotaract</h1>
+                <p class="subtitle fade-in">Découvrez notre mission, nos valeurs et notre équipe passionnée</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section">
+            <div class="about-content">
+                <div class="about-text slide-in-left">
+                    <h3>Notre Mission</h3>
+                    <p>Le Rotaract Club du Campus Henry Christophe de Limonade est une organisation de jeunes leaders qui s'engagent à servir leur communauté, développer leurs compétences professionnelles et promouvoir l'entente internationale.</p>
+                    
+                    <h3>Notre Histoire</h3>
+                    <p>Fondé en 2024, notre club fait partie du réseau mondial du Rotaract, programme du Rotary International pour les jeunes de 18 à 35 ans. Nous sommes fiers d'être la première organisation étudiante de service au Campus Henry Christophe.</p>
+                    
+                    <h3>Nos Valeurs</h3>
+                    <ul class="values-list">
+                        <li><i class="fas fa-hand-holding-heart"></i> Service à la communauté</li>
+                        <li><i class="fas fa-users"></i> Développement du leadership</li>
+                        <li><i class="fas fa-globe-americas"></i> Entente internationale</li>
+                        <li><i class="fas fa-handshake"></i> Professionnalisme et éthique</li>
+                    </ul>
+                </div>
+                <div class="about-image slide-in-right">
+                    <div class="image-placeholder">
+                 <img src="" alt="Logo Rotaract" class="Photos">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="stats-section fade-in">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="19">0</span>
+                    <span class="stat-label">Membres Actifs</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="1">0</span>
+                    <span class="stat-label">Projets Réalisés</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-number" data-count="1">0</span>
+                    <span class="stat-label">Années d'Activité</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Statement -->
+        <section class="mission-section fade-in">
+            <div class="mission-content">
+                <h3>Notre Engagement</h3>
+                <p>"Service Above Self" - Servir avant soi-même. Cette devise guide chacune de nos actions et nous rappelle que le véritable leadership naît du service désintéressé envers autrui.</p>
+                <p>Nous nous engageons à former la prochaine génération de leaders haïtiens, capables de relever les défis de demain avec intégrité, innovation et compassion.</p>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section fade-in">
+            <h3>Notre Équipe Dirigeante 2024-2025</h3>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-placeholder">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>Jenny ST LOR</h4>
+                    <p>Présidente</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-placeholder">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h4>Libesky CHERRELUS</h4>
+                    <p>Vice-Président</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-placeholder">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h4> Rose-cadensa Blouseda SAINTINORD</h4>
+                    <p>Secrétaire</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-placeholder">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h4>Landwidge JOSEPH</h4>
+                    <p>Trésorier</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-placeholder">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h4> Daphna SAINT-HILAIRE</h4>
+                    <p>Chef de protocole</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-placeholder">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Jeffry JULES</h4>
+                    <p>Responsable image publique</p>                 
+                </div>
+                <div class="team-member">
+                    <div class="member-placeholder">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Can-Love JOSEPH </h4>
+                    <p>Responsable service International</p>                 
+                </div>
+                 <div class="team-member">
+                    <div class="member-placeholder">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4> Libesky CHERRELUS</h4>
+                    <p>Responsable effectif</p>                 
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Rotaract Club - Campus Henry Christophe de Limonade. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Année dynamique
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animation des statistiques
+                    if (entry.target.classList.contains('stats-section')) {
+                        animateStats();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Responsive menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.querySelector('nav ul');
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+        // Observer tous les éléments avec les classes d'animation
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animation des statistiques
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.dataset.count);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 50);
+            });
+        }
+
+        // Animation de la liste des valeurs
+        const valuesList = document.querySelectorAll('.values-list li');
+        valuesList.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Effet parallax léger sur le hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-section');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Smooth scrolling pour les liens internes
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

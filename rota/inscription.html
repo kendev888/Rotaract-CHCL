@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Rotaract Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+                        <img src="images/téléchargement.png" alt="Logo Rotaract" class="logo">
+
+            <h1>Campus Henry Christophe Limonade</h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="events.html">Événements</a></li>
+                <li><a href="gallery.html">Galerie</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" title="Ouvrir le menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <main>
+        <section id="inscription" class="inscription-section">
+            <h2>Inscrire</h2>
+            <form class="inscription-form" id="inscriptionForm" novalidate>
+                <div class="form-group">
+                    <label for="full-name">Nom complet *</label>
+                    <input id="full-name" type="text" name="full_name" placeholder="Votre nom complet" required>
+                    <span class="error-message" id="name-error">Veuillez entrer votre nom complet</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input id="email" type="email" name="email" placeholder="votre.email@example.com" required>
+                    <span class="error-message" id="email-error">Veuillez entrer une adresse email valide</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Téléphone *</label>
+                    <input id="phone" type="tel" name="phone" placeholder="+509 XX XX XXXX" required>
+                    <span class="error-message" id="phone-error">Veuillez entrer un numéro de téléphone valide</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date de naissance *</label>
+                    <input id="dob" type="date" name="dob" required>
+                    <span class="error-message" id="dob-error">Vous devez avoir entre 18 et 30 ans pour rejoindre le Rotaract</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Genre *</label>
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Choisissez votre genre</option>
+                        <option value="male">Homme</option>
+                        <option value="female">Femme</option>
+                        <option value="other">Autre</option>
+                    </select>
+                    <span class="error-message" id="gender-error">Veuillez sélectionner votre genre</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Pourquoi souhaitez-vous rejoindre le Rotaract ? *</label>
+                    <textarea id="motivation" name="motivation" placeholder="Partagez votre motivation et vos objectifs avec le club..." required></textarea>
+                    <span class="error-message" id="motivation-error">Veuillez expliquer votre motivation (minimum 50 caractères)</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Expérience en bénévolat ou leadership</label>
+                    <textarea id="experience" name="experience" placeholder="Décrivez vos expériences pertinentes (optionnel)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="id-proof">Pièce d'identité (JPG, PNG ou PDF - Max 5MB) *</label>
+                    <input id="id-proof" type="file" name="id_proof" accept=".jpg,.jpeg,.png,.pdf" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="terms">
+                        <input type="checkbox" id="terms" name="terms" required title="Accepter les conditions">
+                        J'accepte les conditions d'adhésion et m'engage à respecter les valeurs du Rotaract *
+                    </label>
+                    <span class="error-message" id="terms-error">Vous devez accepter les conditions</span>
+                </div>
+
+                <button type="submit" class="cta-button" id="submitBtn">
+                    <i class="fas fa-user-plus"></i>
+                    Soumettre ma candidature
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Rotaract Club - Campus Henry Christophe de Limonade. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Menu responsive
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        });
+
+        // Fermer le menu mobile lors du clic sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+            });
+        });
+
+        // Header scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const header = document.querySelector('header');
+            
+            if (currentScroll <= 0) {
+                header.classList.remove('scroll-up');
+                return;
+            }
+            
+            if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+                // Scroll vers le bas
+                header.classList.remove('scroll-up');
+                header.classList.add('scroll-down');
+            } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
+                // Scroll vers le haut
+                header.classList.remove('scroll-down');
+                header.classList.add('scroll-up');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Année dynamique
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Validation du formulaire
+        const form = document.getElementById('inscriptionForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        // Validation en temps réel
+        const inputs = form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', validateField);
+            input.addEventListener('input', clearError);
+        });
+
+        function validateField(e) {
+            const field = e.target;
+            const fieldName = field.name;
+            let isValid = true;
+            let errorMessage = '';
+
+            // Reset visual state
+            field.classList.remove('valid', 'invalid');
+            
+            switch(fieldName) {
+                case 'full_name':
+                    if (field.value.trim().length < 2) {
+                        isValid = false;
+                        errorMessage = 'Le nom doit contenir au moins 2 caractères';
+                    }
+                    break;
+                    
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(field.value)) {
+                        isValid = false;
+                        errorMessage = 'Veuillez entrer une adresse email valide';
+                    }
+                    break;
+                    
+                case 'phone':
+                    const phoneRegex = /^[\+]?[\d\s\-\(\)]{8,}$/;
+                    if (!phoneRegex.test(field.value)) {
+                        isValid = false;
+                        errorMessage = 'Veuillez entrer un numéro de téléphone valide';
+                    }
+                    break;
+                    
+                case 'dob':
+                    const birthDate = new Date(field.value);
+                    const today = new Date();
+                    const age = today.getFullYear() - birthDate.getFullYear();
+                    if (age < 18 || age > 30) {
+                        isValid = false;
+                        errorMessage = 'Vous devez avoir entre 18 et 30 ans pour rejoindre le Rotaract';
+                    }
+                    break;
+                    
+                case 'gender':
+                    if (!field.value) {
+                        isValid = false;
+                        errorMessage = 'Veuillez sélectionner votre genre';
+                    }
+                    break;
+                    
+                case 'motivation':
+                    if (field.value.trim().length < 50) {
+                        isValid = false;
+                        errorMessage = `Veuillez développer votre motivation (${field.value.trim().length}/50 caractères minimum)`;
+                    }
+                    break;
+                    
+                case 'id_proof':
+                    if (field.files.length > 0) {
+                        const file = field.files[0];
+                        const maxSize = 5 * 1024 * 1024; // 5MB
+                        if (file.size > maxSize) {
+                            isValid = false;
+                            errorMessage = 'Le fichier ne doit pas dépasser 5MB';
+                        }
+                    } else if (field.required) {
+                        isValid = false;
+                        errorMessage = 'Veuillez télécharger votre pièce d\'identité';
+                    }
+                    break;
+            }
+
+            // Affichage du résultat
+            const errorElement = document.getElementById(fieldName.replace('_', '-') + '-error');
+            if (errorElement) {
+                if (isValid) {
+                    field.classList.add('valid');
+                    errorElement.classList.remove('show');
+                } else {
+                    field.classList.add('invalid');
+                    errorElement.textContent = errorMessage;
+                    errorElement.classList.add('show');
+                }
+            }
+
+            return isValid;
+        }
+
+        function clearError(e) {
+            const field = e.target;
+            field.classList.remove('invalid');
+            const errorElement = document.getElementById(field.name.replace('_', '-') + '-error');
+            if (errorElement) {
+                errorElement.classList.remove('show');
+            }
+        }
+
+        // Soumission du formulaire
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isFormValid = true;
+            
+            // Valider tous les champs
+            inputs.forEach(input => {
+                if (!validateField({ target: input })) {
+                    isFormValid = false;
+                }
+            });
+
+            // Vérifier les termes et conditions
+            const terms = document.getElementById('terms');
+            const termsError = document.getElementById('terms-error');
+            if (!terms.checked) {
+                isFormValid = false;
+                termsError.classList.add('show');
+            } else {
+                termsError.classList.remove('show');
+            }
+
+            if (isFormValid) {
+                // Simuler l'envoi du formulaire
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+                
+                setTimeout(() => {
+                    alert('✅ Candidature envoyée avec succès !\n\nNous vous contacterons dans les plus brefs délais pour la suite du processus d\'admission.\n\nMerci de votre intérêt pour le Rotaract Club !');
+                    form.reset();
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Soumettre ma candidature';
+                    
+                    // Reset visual states
+                    inputs.forEach(input => {
+                        input.classList.remove('valid', 'invalid');
+                    });
+                }, 2000);
+            } else {
+                // Scroll vers la première erreur
+                const firstError = form.querySelector('.invalid');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstError.focus();
+                }
+            }
+        });
+
+        // Formatage automatique du numéro de téléphone
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.startsWith('509')) {
+                value = '+' + value;
+            }
+            e.target.value = value;
+        });
+
+        // Compteur de caractères pour la motivation
+        document.getElementById('motivation').addEventListener('input', function(e) {
+            const count = e.target.value.length;
+            const label = document.querySelector('label[for="motivation"]');
+            const minChars = 50;
+            
+            if (count < minChars) {
+                label.textContent = `Pourquoi souhaitez-vous rejoindre le Rotaract ? * (${count}/${minChars})`;
+            } else {
+                label.textContent = 'Pourquoi souhaitez-vous rejoindre le Rotaract ? *';
+            }
+        });
+    </script>
+</body>
+</html>

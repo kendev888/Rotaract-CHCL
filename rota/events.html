@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements - Rotaract Club Limonade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* === VARIABLES MODERNES ROTARACT === */
+        :root {
+            --rotaract-blue: #1E3D6F;
+            --rotaract-gold: #F2A900;
+            --rotaract-light-blue: #4A90E2;
+            --rotaract-dark-blue: #0D2B4E;
+            
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --medium-gray: #E9ECEF;
+            --dark-gray: #6C757D;
+            --text-dark: #2D3748;
+            --success-green: #38A169;
+            --warning-orange: #DD6B20;
+            
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --radius: 8px;
+            --radius-lg: 12px;
+            
+            --gradient-primary: linear-gradient(135deg, var(--rotaract-blue) 0%, var(--rotaract-dark-blue) 100%);
+            --gradient-gold: linear-gradient(45deg, var(--rotaract-gold), #FFB800);
+        }
+
+        /* === RESET MODERNE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-gray);
+        }
+
+        /* === HEADER === */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .logo-container h1 {
+            font-size: 1.3rem;
+            color: var(--rotaract-blue);
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--rotaract-blue);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--white);
+            background: var(--rotaract-gold);
+            transform: translateY(-2px);
+        }
+
+        /* === HERO SECTION === */
+        .hero-section {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(242, 169, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* === EVENTS SECTION === */
+        .events-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        /* === ONGLETS === */
+        .events-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--rotaract-blue);
+            background: transparent;
+            color: var(--rotaract-blue);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .tab-btn:hover {
+            background: var(--rotaract-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--rotaract-gold);
+            border-color: var(--rotaract-gold);
+            color: var(--white);
+        }
+
+        /* === GRILLE ÉVÉNEMENTS === */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .events-grid.hidden {
+            display: none;
+        }
+
+        /* === CARTES ÉVÉNEMENTS === */
+        .event-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--rotaract-gold);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .event-card.past {
+            border-left-color: var(--dark-gray);
+            opacity: 0.8;
+        }
+
+        .event-card.featured {
+            border-left-color: var(--success-green);
+            border-left-width: 6px;
+        }
+
+        .event-header {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .event-date {
+            background: var(--rotaract-blue);
+            color: var(--white);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            min-width: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .event-card.past .event-date {
+            background: var(--dark-gray);
+        }
+
+        .event-card.featured .event-date {
+            background: var(--success-green);
+        }
+
+        .event-date .day {
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .event-date .month {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
+
+        .event-status {
+            padding: 1rem;
+            background: var(--rotaract-gold);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .event-card.past .event-status {
+            background: var(--dark-gray);
+        }
+
+        .event-card.featured .event-status {
+            background: var(--success-green);
+        }
+
+        .event-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-info h3 {
+            color: var(--rotaract-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        .event-meta p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .event-meta i {
+            width: 16px;
+            color: var(--rotaract-gold);
+        }
+
+        .event-description {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .event-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .event-tag {
+            background: var(--medium-gray);
+            color: var(--text-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .event-btn {
+            background: var(--gradient-gold);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .event-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(242, 169, 0, 0.3);
+        }
+
+        .event-btn.disabled {
+            background: var(--dark-gray);
+            cursor: not-allowed;
+        }
+
+        .event-btn.disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* === CALENDRIER === */
+        .calendar-section {
+            background: var(--white);
+            padding: 3rem 2rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .calendar-section h3 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--rotaract-blue);
+            margin-bottom: 2rem;
+        }
+
+        .calendar-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background: var(--medium-gray);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .calendar-header {
+            background: var(--rotaract-blue);
+            color: var(--white);
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .calendar-day {
+            background: var(--white);
+            padding: 1rem;
+            min-height: 80px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .calendar-day:hover {
+            background: var(--light-gray);
+        }
+
+        .calendar-day.has-event {
+            background: rgba(242, 169, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .calendar-day.has-event::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background: var(--rotaract-gold);
+            border-radius: 50%;
+        }
+
+        .day-number {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .calendar-day.other-month .day-number {
+            color: var(--dark-gray);
+            opacity: 0.5;
+        }
+
+        /* === STATISTIQUES === */
+        .stats-section {
+            background: var(--white);
+            padding: 3rem 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--rotaract-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--rotaract-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--rotaract-dark-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero-section {
+                padding: 3rem 1rem 2rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .events-section {
+                padding: 0 1rem;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .events-tabs {
+                gap: 0.5rem;
+            }
+
+            .tab-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .calendar-container {
+                font-size: 0.8rem;
+            }
+
+            .calendar-day {
+                min-height: 60px;
+                padding: 0.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .event-header {
+                flex-direction: column;
+            }
+
+            .event-date {
+                min-width: unset;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* === ANIMATIONS === */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .event-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .event-card:nth-child(1) { animation-delay: 0.1s; }
+        .event-card:nth-child(2) { animation-delay: 0.2s; }
+        .event-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+                        <img src="images/téléchargement.png" alt="Logo Rotaract" class="logo">
+
+            <h1>Campus Henry Christophe Limonade</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="events.html" class="active">Événements</a></li>
+                <li><a href="gallery.html">Galerie</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="fade-in">Nos Événements</h1>
+            <p class="subtitle fade-in">Participez à nos actions pour transformer notre communauté</p>
+        </div>
+    </section>
+
+    <main>
+        <section class="events-section">
+            <!-- Onglets -->
+            <div class="events-tabs">
+                <button class="tab-btn active" data-tab="upcoming">À venir</button>
+                <button class="tab-btn" data-tab="past">Passés</button>
+            </div>
+
+            <!-- Événements à venir -->
+            <div class="events-grid" id="upcoming-events">
+                <div class="event-card featured">
+                    <div class="event-header">
+                        <div class="event-date">
+                            <span class="day">28</span>
+                            <span class="month">Oct</span>
+                        </div>
+                        <div class="event-status">
+                            <i class="fas fa-star"></i>
+                            Événement phare
+                        </div>
+                    </div>
+                    <div class="event-info">
+                        <h3>Grande Collecte de Fournitures Scolaires</h3>
+                        <div class="event-meta">
+                            <p><i class="far fa-clock"></i> 9h00 - 16h00</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Campus Universitaire - Hall Principal</p>
+                            <p><i class="fas fa-users"></i> 50+ participants attendus</p>
+                        </div>
+                        <div class="event-tags">
+                            <span class="event-tag">Éducation</span>
+                            <span class="event-tag">Communauté</span>
+                            <span class="event-tag">Solidarité</span>
+                        </div>
+                        <p class="event-description">Rejoignez-nous pour notre plus grande collecte de l'année ! Nous récolterons des fournitures scolaires pour soutenir les écoles défavorisées de la région Nord.</p>
+                        <a href="#" class="event-btn">
+                            <i class="fas fa-user-plus"></i>
+                            S'inscrire
+                        </a>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-date">
+                            <span class="day">5</span>
+                            <span class="month">Nov</span>
+                        </div>
+                        <div class="event-status">Ouvert</div>
+                    </div>
+                    <div class="event-info">
+                        <h3>Atelier Leadership & Communication</h3>
+                        <div class="event-meta">
+                            <p><i class="far fa-clock"></i> 14h00 - 17h00</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Salle de Conférence B12</p>
+                            <p><i class="fas fa-user-tie"></i> Formateur certifié</p>
+                        </div>
+                        <div class="event-tags">
+                            <span class="event-tag">Formation</span>
+                            <span class="event-tag">Leadership</span>
+                        </div>
+                        <p class="event-description">Développez vos compétences en leadership et communication avec notre formateur expert. Session interactive avec exercices pratiques.</p>
+                        <a href="#" class="event-btn">
+                            <i class="fas fa-graduation-cap"></i>
+                            Réserver
+                        </a>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-date">
+                            <span class="day">12</span>
+                            <span class="month">Nov</span>
+                        </div>
+                        <div class="event-status">Ouvert</div>
+                    </div>
+                    <div class="event-info">
+                        <h3>Journée Environnement & Reboisement</h3>
+                        <div class="event-meta">
+                            <p><i class="far fa-clock"></i> 8h00 - 15h00</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Parc Municipal Limonade</p>
+                            <p><i class="fas fa-seedling"></i> 200 arbres à planter</p>
+                        </div>
+                        <div class="event-tags">
+                            <span class="event-tag">Environnement</span>
+                            <span class="event-tag">Action citoyenne</span>
+                        </div>
+                        <p class="event-description">Participez à notre action de reboisement pour un environnement plus vert. Transport et repas fournis.</p>
+                        <a href="#" class="event-btn">
+                            <i class="fas fa-leaf"></i>
+                            Participer
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Événements passés -->
+            <div class="events-grid hidden" id="past-events">
+                <div class="event-card past">
+                    <div class="event-header">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">Sep</span>
+                        </div>
+                        <div class="event-status">Terminé</div>
+                    </div>
+                    <div class="event-info">
+                        <h3>Installation du Bureau 2023-2024</h3>
+                        <div class="event-meta">
+                            <p><i class="far fa-clock"></i> 18h00 - 21h00</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Auditorium du Campus</p>
+                            <p><i class="fas fa-users"></i> 80 participants</p>
+                        </div>
+                        <div class="event-tags">
+                            <span class="event-tag">Officiel</span>
+                            <span class="event-tag">Cérémonie</span>
+                        </div>
+                        <p class="event-description">Cérémonie d'installation du nouveau bureau directeur avec la présence du Gouverneur du District.</p>
+                        <a href="#" class="event-btn disabled">
+                            <i class="fas fa-check"></i>
+                            Terminé
+                        </a>
+                    </div>
+                </div>
+
+                <div class="event-card past">
+                    <div class="event-header">
+                        <div class="event-date">
+                            <span class="day">8</span>
+                            <span class="month">Août</span>
+                        </div>
+                        <div class="event-status">Terminé</div>
+                    </div>
+                    <div class="event-info">
+                        <h3>Distribution de Vivres</h3>
+                        <div class="event-meta">
+                            <p><i class="far fa-clock"></i> 9h00 - 14h00</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Quartier Sainte-Anne</p>
+                            <p><i class="fas fa-heart"></i> 150 familles aidées</p>
+                        </div>
+                        <div class="event-tags">
+                            <span class="event-tag">Solidarité</span>
+                            <span class="event-tag">Social</span>
+                        </div>
+                        <p class="event-description">Distribution de kits alimentaires aux familles dans le besoin suite aux intempéries.</p>
+                        <a href="#" class="event-btn disabled">
+                            <i class="fas fa-check"></i>
+                            Terminé
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistiques -->
+        <section class="stats-section fade-in">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Événements/An</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Participants</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Partenaires</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">85%</span>
+                    <span class="stat-label">Satisfaction</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calendrier -->
+        <section class="calendar-section fade-in">
+            <h3>Calendrier Octobre 2025</h3>
+            <div class="calendar-container" id="calendar">
+                <!-- Headers -->
+                <div class="calendar-header">Dim</div>
+                <div class="calendar-header">Lun</div>
+                <div class="calendar-header">Mar</div>
+                <div class="calendar-header">Mer</div>
+                <div class="calendar-header">Jeu</div>
+                <div class="calendar-header">Ven</div>
+                <div class="calendar-header">Sam</div>
+                
+                <!-- Jours -->
+                <div class="calendar-day">
+                    <div class="day-number">1</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">2</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">3</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">4</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">5</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">6</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">7</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">8</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">9</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">10</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">11</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">12</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">13</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">14</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">15</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">16</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">17</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">18</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">19</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">20</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">21</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">22</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">23</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">24</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">25</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">26</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">27</div>
+                </div>
+                <div class="calendar-day has-event">
+                    <div class="day-number">28</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">29</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">30</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="day-number">31</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Rotaract Club - Campus Henry Christophe de Limonade. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Année dynamique
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Gestion des onglets
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const eventGrids = {
+            'upcoming': document.getElementById('upcoming-events'),
+            'past': document.getElementById('past-events')
+        };
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Retirer la classe active de tous les boutons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // Ajouter la classe active au bouton cliqué
+                button.classList.add('active');
+
+                const tab = button.dataset.tab;
+
+                // Cacher toutes les grilles
+                Object.values(eventGrids).forEach(grid => {
+                    grid.classList.add('hidden');
+                });
+
+                // Afficher la grille correspondante
+                if (eventGrids[tab]) {
+                    eventGrids[tab].classList.remove('hidden');
+                }
+            });
+        });
+
+        // Gestion des inscriptions aux événements
+        document.querySelectorAll('.event-btn:not(.disabled)').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const eventCard = btn.closest('.event-card');
+                const eventTitle = eventCard.querySelector('h3').textContent;
+                
+                if (confirm(`Voulez-vous vous inscrire à "${eventTitle}" ?`)) {
+                    // Simuler l'inscription
+                    btn.innerHTML = '<i class="fas fa-check"></i> Inscrit';
+                    btn.style.background = '#38A169';
+                    btn.classList.add('disabled');
+                    
+                    // Afficher un message de confirmation
+                    setTimeout(() => {
+                        alert('Inscription confirmée !\n\nVous recevrez bientôt un email de confirmation avec tous les détails.\n\nMerci de rejoindre notre action !');
+                    }, 500);
+                }
+            });
+        });
+
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments avec fade-in
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Interaction avec le calendrier
+        document.querySelectorAll('.calendar-day.has-event').forEach(day => {
+            day.addEventListener('click', () => {
+                const dayNumber = day.querySelector('.day-number').textContent;
+                let eventInfo = '';
+                
+                if (dayNumber === '28') {
+                    eventInfo = 'Camaraderie\n13h00 - 16h00\nCampus Universitaire';
+                }
+                
+                if (eventInfo) {
+                    alert(`📅 Événement du ${dayNumber} octobre :\n\n${eventInfo}`);
+                }
+            });
+            
+            // Ajouter un style hover personnalisé
+            day.style.cursor = 'pointer';
+            day.addEventListener('mouseenter', () => {
+                day.style.backgroundColor = 'rgba(242, 169, 0, 0.2)';
+            });
+            day.addEventListener('mouseleave', () => {
+                day.style.backgroundColor = 'rgba(242, 169, 0, 0.1)';
+            });
+        });
+
+        // Effet de comptage pour les statistiques
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const finalValue = stat.textContent;
+                const isPercentage = finalValue.includes('%');
+                const numValue = parseInt(finalValue.replace(/[^0-9]/g, ''));
+                
+                if (isNaN(numValue)) return;
+                
+                let currentValue = 0;
+                const increment = Math.ceil(numValue / 30);
+                
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= numValue) {
+                        stat.textContent = finalValue;
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = isPercentage ? currentValue + '%' : 
+                                         finalValue.includes('+') ? currentValue + '+' : currentValue;
+                    }
+                }, 50);
+            });
+        }
+
+        // Démarrer l'animation des stats quand la section devient visible
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            observer.observe(statsSection);
+            statsSection.addEventListener('animationstart', animateStats, { once: true });
+        }
+
+        // Effet de scroll fluide pour les liens d'ancrage
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mise à jour dynamique du statut des événements
+        function updateEventStatus() {
+            const now = new Date();
+            const eventCards = document.querySelectorAll('.event-card:not(.past)');
+            
+            eventCards.forEach(card => {
+                const dayElement = card.querySelector('.event-date .day');
+                const monthElement = card.querySelector('.event-date .month');
+                
+                if (dayElement && monthElement) {
+                    const eventDay = parseInt(dayElement.textContent);
+                    const eventMonth = monthElement.textContent.toLowerCase();
+                    
+                    // Logique simple de comparaison des dates
+                    // Dans un vrai projet, utilisez une library comme date-fns
+                    const monthMap = {
+                        'jan': 0, 'fév': 1, 'mar': 2, 'avr': 3, 'mai': 4, 'jun': 5,
+                        'jul': 6, 'aoû': 7, 'sep': 8, 'oct': 9, 'nov': 10, 'déc': 11
+                    };
+                    
+                    const eventDate = new Date(now.getFullYear(), monthMap[eventMonth] || 9, eventDay);
+                    const daysDiff = Math.ceil((eventDate - now) / (1000 * 60 * 60 * 24));
+                    
+                    const statusElement = card.querySelector('.event-status');
+                    if (daysDiff < 0) {
+                        card.classList.add('past');
+                        statusElement.textContent = 'Terminé';
+                    } else if (daysDiff <= 7) {
+                        statusElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Bientôt';
+                        statusElement.style.background = '#DD6B20';
+                    }
+                }
+            });
+        }
+
+        // Exécuter la mise à jour du statut
+        updateEventStatus();
+    </script>
+</body>
+</html>
